@@ -1,0 +1,32 @@
+---
+- name: read vars for OS-specific configuration
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - default.yml
+      paths:
+        - vars
+
+- name: Ensure memcached is installed
+  apt:
+    cache_valid_time: 86400
+    name: memcached
+    state: present
+    update_cache: true
+
+- name: Ensure memcached config is installed
+  template:
+    dest: /etc/memcached.conf
+    group: root
+    mode: 0644
+    owner: root
+    src: memcached.conf.j2
+  notify: Restart memcached
+
+- name: Ensure memcached starts on boot
+  service:
+    enabled: true
+    name: memcached

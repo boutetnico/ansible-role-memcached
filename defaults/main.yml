@@ -1,0 +1,9 @@
+---
+memcached_daemon: true
+memcached_logfile: /var/log/memcached.log
+memcached_verbose: false
+memcached_more_verbose: false
+memcached_memory: 64
+memcached_port: 11211
+memcached_user: memcache
+memcached_listen: 127.0.0.1

@@ -1,0 +1,2 @@
+---
+memcached_pidfile: /var/run/memcached/memcached.pid
