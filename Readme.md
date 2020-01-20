@@ -43,7 +43,7 @@ Example Playbook
 
     - hosts: all
       roles:
-      - role: ansible-role-memcached
+        - role: ansible-role-memcached
 
 Testing
 -------
