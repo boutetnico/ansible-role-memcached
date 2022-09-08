@@ -1,6 +1,6 @@
 ---
-- name: read vars for OS-specific configuration
-  include_vars: "{{ lookup('first_found', params) }}"
+- name: Read vars for OS-specific configuration
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
@@ -11,13 +11,13 @@
         - vars
 
 - name: Ensure memcached is installed
-  apt:
+  ansible.builtin.apt:
     name: memcached
     state: present
     update_cache: true
 
 - name: Ensure memcached config is installed
-  template:
+  ansible.builtin.template:
     dest: /etc/memcached.conf
     group: root
     mode: 0644
@@ -26,6 +26,6 @@
   notify: Restart memcached
 
 - name: Ensure memcached starts on boot
-  service:
+  ansible.builtin.service:
     enabled: true
     name: memcached
