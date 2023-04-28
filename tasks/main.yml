@@ -20,7 +20,7 @@
   ansible.builtin.template:
     dest: /etc/memcached.conf
     group: root
-    mode: 0644
+    mode: "0644"
     owner: root
     src: memcached.conf.j2
   notify: Restart memcached
